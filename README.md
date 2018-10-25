@@ -12,6 +12,11 @@ ga2 is a highly flexible and easy to use utility module implementing Genetic Alg
 pip3 install ga2
 ```
 
+* upgrading
+```
+pip3 install --upgrade --no-cache ga2==0.2.9
+```
+
 * import the Genetic Algorithm utility as 
 ```
 import ga2.gaDisc as gad

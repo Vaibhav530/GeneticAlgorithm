@@ -1,18 +1,23 @@
-# This is the DnaClass / AgentClass file all agents
-# are objects of this class
+"""
+This is the DnaClass / AgentClass file all agents
+are objects of this class
+"""
+
 import random
 
 
-def generateDna(numParam, spread):
+def generateDna(numParam, spread, valType):
     """
-    INPUT       : rows = 10, columns = 10, spread = 2
-    OUTPUT      : class Dna.dna structure
+    INPUT       : numParam, spread
+    OUTPUT      : a list of length numParam
 
-    DESCRIPTION : returns a 2D list whose number of rows is as specified
-                  and whose columns is as specified and each value in the
-                  matrix is in [0, 10^spread]
+    DESCRIPTION : returns a list whose number of rows is as specified
+                  and with numbers varying between [0, spread]
     """
-    retDna = [random.uniform(0, spread) for row in range(numParam)]
+    if(valType == 'FLOAT'):
+        retDna = [random.random()*spread for row in range(numParam)]
+    else:
+        retDna = [random.randint(0, spread) for row in range(numParam)]
     return(retDna)
 
 
@@ -24,9 +29,11 @@ class AgentDna:
     all the attributes required to identify and measure the
     agent's fitness
     """
-    def __init__(self, numParam,  spread):
+    def __init__(self, sess):
         
         self.agentID = None
         self.sessID = None
-        self.dna = generateDna(numParam=numParam, spread=spread)
+        self.dna = generateDna(numParam=sess.numParam,
+                               spread=sess.spread,
+                               valType=sess.valType)
         self.fitness = 0
